@@ -9,6 +9,7 @@ __pycache__/
 data/
 models/*.pkl
 models/*.joblib
+models/*.pt
 
 # OS
 .DS_Store
