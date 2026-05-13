@@ -12,7 +12,6 @@ import re
 # Analogy: the training set is the textbook, the test set is the final exam
 from sklearn.model_selection import train_test_split
 
-
 # This script is the data janitor of the project
 # The raw tweets are messy — full of URLs, @mentions, symbols, and inconsistent casing
 # This script loads the raw data, scrubs every tweet clean, and saves two tidy files
