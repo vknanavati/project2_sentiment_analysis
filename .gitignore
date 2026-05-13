@@ -1,0 +1,17 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# Data & Models
+data/
+models/*.pkl
+models/*.joblib
+
+# OS
+.DS_Store
+
+# Editors
+.windsurf/
