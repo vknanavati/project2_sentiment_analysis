@@ -19,6 +19,45 @@ The two models:
 - **TF-IDF + Logistic Regression** — a fast, traditional ML approach
 - **LSTM Neural Network** — a more powerful deep learning approach that understands word order
 
+### Deep Averaging Network (DAN)
+
+A Deep Averaging Network is a type of neural network designed for text classification. Despite being simpler than models like LSTMs, it performs surprisingly well on sentiment analysis tasks.
+
+**How it works in three steps:**
+
+**Step 1 — Word Embeddings**
+Every word in the tweet gets converted into a vector of numbers. These numbers aren't random — they're learned during training so that words with similar meanings end up with similar vectors. For example, "happy" and "joyful" end up close together in the embedding space, while "happy" and "terrible" end up far apart.
+
+**Step 2 — Averaging**
+All the word vectors in a tweet get averaged together into one single vector. So a tweet with 10 words produces 10 vectors, and those 10 vectors get collapsed into one averaged vector that represents the overall meaning of the tweet.
+
+**Step 3 — Classification layers**
+That averaged vector gets passed through three fully connected layers that progressively refine it into a single number between 0 and 1. Above 0.5 = positive, below 0.5 = negative.
+
+---
+
+**What DAN does NOT do:**
+It ignores word order completely. "I am not happy" and "I am happy not" look identical to a DAN because it just averages all the words regardless of sequence.
+
+---
+
+**Why DAN instead of LSTM?**
+We originally planned to use an LSTM which reads tweets word by word and maintains memory of what it has read. However LSTMs are significantly harder to train — they're sensitive to hardware precision, learning rates, and gradient stability. On this setup the LSTM got stuck and never learned anything useful.
+
+The DAN trades the LSTM's sequential understanding for simplicity and stability — and ended up achieving nearly identical accuracy (78.94% vs 79.76% for TF-IDF).
+
+---
+
+**Why is DAN's accuracy so close to TF-IDF?**
+This is one of the most important lessons of this project. Twitter tweets are short — usually under 20 words. For short text, word order matters less than you might think. A tweet that says "this movie was absolutely terrible" doesn't need sequential understanding to be classified as negative — the word "terrible" alone is a strong enough signal.
+
+For longer, more complex text (like movie reviews or legal documents), the gap between a DAN and an LSTM would be larger because context and word order matter more.
+
+---
+
+**Analogy:**
+Imagine you're sorting letters into happy and sad piles. The LSTM reads each letter word by word like a human would. The DAN pulls out all the words, throws them in a blender, and judges the overall mixture. For short letters, the blender approach works almost as well — because the key emotional words dominate the average regardless of order.
+
 ---
 
 ## Project Structure
