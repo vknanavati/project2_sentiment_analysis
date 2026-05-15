@@ -170,6 +170,6 @@ This script runs the same test set through both models and produces: a side-by-s
 Since this is a binary classification task (positive vs. negative), a model that just guessed randomly would be right 50% of the time. A model that always guessed "positive" (the majority class) might hit ~55-60%. We're aiming for:
 
 - **TF-IDF + Logistic Regression:** ~80–83% accuracy
-- **LSTM:** ~82–86% accuracy
+- - **Deep Averaging Network (DAN):** 78.94% accuracy
 
 The gap may be smaller than you expect — that's one of the lessons of this project.
