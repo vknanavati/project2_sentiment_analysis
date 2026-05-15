@@ -156,8 +156,8 @@ Raw tweets contain URLs (`https://...`), @mentions, hashtag symbols, punctuation
 This script converts the cleaned tweets into TF-IDF vectors, trains a Logistic Regression classifier, evaluates it on the test set, and saves the trained model. It also shows which words most strongly predicted positive vs. negative sentiment.
 
 ### `04_train_lstm.py`
-**Purpose:** Train the second model — an LSTM neural network.
-This script builds a vocabulary from the training tweets, converts words to integer IDs, trains a PyTorch LSTM model with word embeddings, and evaluates it on the test set. Training happens over multiple epochs and we track accuracy over time.
+**Purpose:** Train the second model — a Deep Averaging Network (DAN).
+This script builds a vocabulary from the training tweets, converts words to integer IDs, and trains a PyTorch neural network using word embeddings. Each tweet's word vectors are averaged into a single vector which is passed through three fully connected layers to predict sentiment. We originally planned to use an LSTM but switched to a DAN due to hardware precision issues with PyTorch's MPS backend on Apple Silicon. The DAN achieved nearly identical accuracy (78.94%) with significantly more stable training.
 
 ### `05_compare.py`
 **Purpose:** Load both trained models and compare them directly.
